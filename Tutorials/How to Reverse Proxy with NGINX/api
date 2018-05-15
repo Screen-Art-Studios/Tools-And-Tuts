@@ -6,10 +6,10 @@ server {
 server {
 
     listen 443;
-    server_name api.timecrunchapp.com;
+    server_name api.yourapp.com;
 
-    ssl_certificate           /etc/letsencrypt/live/api.timecrunchapp.com/fullchain.pem;
-    ssl_certificate_key       /etc/letsencrypt/live/api.timecrunchapp.com/privkey.pem;
+        ssl_certificate           /etc/nginx/ssl/self-signed.crt;
+        ssl_certificate_key       /etc/nginx/ssl/self-signed.key;
 
     ssl on;
     ssl_session_cache  builtin:1000  shared:SSL:10m;
@@ -17,7 +17,7 @@ server {
     ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
     ssl_prefer_server_ciphers on;
 
-    access_log            /var/log/nginx/timecrunchAPI.access.log;
+    access_log            /var/log/nginx/yourAPI.access.log;
 
     location / {
 
@@ -30,6 +30,6 @@ server {
       proxy_pass          http://localhost:8181;
       proxy_read_timeout  180;
 
-      proxy_redirect      http://localhost:8181 https://timecrunchapp.com;
+      proxy_redirect      http://localhost:8181 https://api.yourapp.com;
     }
   }
