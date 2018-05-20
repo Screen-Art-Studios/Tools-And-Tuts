@@ -1,0 +1,98 @@
+API Config:
+
+  If you do not have an API server already set up for your application simply copy the entire API folder over and run;
+
+    $ npm install
+    $ npm start
+
+  You also must point the reference at line 13 to your DB server.
+
+  If you already have an API server set up simply add the following into the app.js after copying user.js and users.js into the same folder;
+
+    ...
+
+    require("./user");
+    var users = require("./users.js");
+
+    ...
+
+    app.use("/users", users);
+
+    ...
+
+  This will ensure that the users endpoint is configured in the main app.js to reference the prebuilt user validation code.
+  then run;
+
+    $ npm install --save bcryptjs mongoose mongodb lodash passport passport-jwt jsonwebtoken
+    $ npm start (or whatever server start command you have configured)
+
+Application config:
+
+  Paste the following attributes into your <router-view /> tag in the App.vue of your application;
+
+    v-on:login="login" v-on:logout="logOut" v-on:register="register" :logged="loggedIn" :user="user"
+
+  Model the export statement of your App.vue to look similar to this one (you may have additional functionality)
+  Alternatively if you have done zero App.vue configuration I would recommend copying the whole file as I included sweet transitions.
+
+    export default {
+      name: 'App',
+      created () {
+        let vue = this
+        vue.user.token = localStorage.getItem('token')
+        vue.user.id = localStorage.getItem('userId')
+        vue.user.name = localStorage.getItem('name')
+        vue.user.admin = localStorage.getItem('admin')
+        if (vue.user.token !== null) {
+          vue.loggedIn = true
+        }
+      },
+      data: function () {
+        return {
+          loggedIn: false,
+          user: {
+            id: '',
+            token: '',
+            name: '',
+            admin: false
+          }
+        }
+      },
+      methods: {
+        login: function (user) {
+          let vue = this
+          vue.user.token = user.token
+          vue.user.id = user.id
+          vue.user.admin = user.admin
+          vue.loggedIn = true
+          vue.$router.push('/')
+        },
+        logOut: function () {
+          let vue = this
+          vue.user.token = ''
+          vue.user.id = ''
+          vue.loggedIn = false
+          localStorage.removeItem('token')
+          localStorage.removeItem('userId')
+          localStorage.removeItem('name')
+          localStorage.removeItem('admin')
+          vue.$router.push('/')
+        },
+        register: function (user) {
+          let vue = this
+          vue.user.token = user.token
+          vue.user.id = user.id
+          vue.user.name = user.name
+          vue.user.admin = user.admin
+          vue.$router.push('/account')
+        }
+      }
+    }
+
+  Then copy Account.vue, Login.vue, and Register.vue into the pages folder of your project
+  after that we have to add these pages into our router folders routes.js, all of which is in the applications src folder.
+  Simply paste the below into the routes.js above the 404 path.
+
+    { path: '/Login', component: () => import('pages/Login') },
+    { path: '/Register', component: () => import('pages/Register') },
+    { path: '/Account', component: () => import('pages/Account') },

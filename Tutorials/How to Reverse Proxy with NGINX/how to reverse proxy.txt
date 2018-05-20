@@ -6,15 +6,15 @@ Use putty to ssh into your AWS ubuntu server EC2 container (https://www.quickven
 
 $ sudo apt-get update
 $ sudo apt-get install nginx
-$ sudo chmod 777 -R /etc/nginx
 $ sudo mkdir /etc/nginx/ssl
 $ sudo rm -rf /etc/nginx/sites-enabled/default
+$ sudo chmod 777 -R /etc/nginx
 
 copy default and api from this folder to /etc/nginx/sites-enabled using winscp
 edit each to your proper server name and internal ip address
 generate self signed credentials with;
 
-$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/ssl/selfsigned.key -out /etc/nginx/ssl/selfsigned.crt
+$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/ssl/self-signed.key -out /etc/nginx/ssl/self-signed.crt
 
 make sure that your common name matches your domain such as yourapp.com
 
