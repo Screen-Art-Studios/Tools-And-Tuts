@@ -10,10 +10,6 @@ module.exports = function (ctx) {
     extras: [
     ],
     supportIE: true,
-    vendor: {
-      add: [],
-      remove: []
-    },
     build: {
       scopeHoisting: true,
       vueRouterMode: 'history',

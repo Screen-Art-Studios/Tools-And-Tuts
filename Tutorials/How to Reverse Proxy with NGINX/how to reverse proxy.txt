@@ -12,6 +12,12 @@ $ sudo chmod 777 -R /etc/nginx
 
 copy default and api from this folder to /etc/nginx/sites-enabled using winscp
 edit each to your proper server name and internal ip address
+ex;
+
+server_name api.yourapp.com; to server_name api.yournewapp.com;
+proxy_pass          http://localhost:8181; to  proxy_pass          http://localhost:yourport;
+proxy_redirect      http://localhost:8181 https://api.yourapp.com; to proxy_redirect      http://localhost:8181 https://api.yournewapp.com;
+
 generate self signed credentials with;
 
 $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/ssl/self-signed.key -out /etc/nginx/ssl/self-signed.crt

@@ -1,0 +1,11 @@
+
+Run the following commands in sequence from a working Quasar Project;
+
+$ quasar build -m cordova -T android
+$ cd src-cordova
+$ keytool -genkey -v -keystore my-release-key.keystore -alias tripclock -keyalg RSA -keysize 2048 -validity 10000
+$ cordova build android --release -- --keystore=./my-release-key.keystore --storePassword=password --alias=tripclock --password=password
+
+The apk will be generated as;
+ 
+	src-cordova/platforms/android/app/build/outputs/apk/release/app-release.apk
