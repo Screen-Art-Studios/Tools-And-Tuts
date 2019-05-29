@@ -6,5 +6,5 @@ source ~/.profile
 nvm install 10.16.0
 sudo ln -s "$(which nodejs)" /usr/local/bin/node
 sudo npm install pm2 -g
-sudo mkdir /var/www/projectname
-sudo chmod 777 -R /var/www/projectname
+sudo mkdir /var/www
+sudo chmod 777 -R /var/www
