@@ -1,8 +1,7 @@
 Before starting verify that your website is accessible via the domain and that you have added a cname entry in your dns for api that points to @,
-this configures a subdomain for the api's use (see attached screenshot). Also verify that your API is running on internal port 81 and that the web server is running on port 8080. 
+this configures a subdomain for the api's use (see attached screenshot). Also verify that your API is running on internal port 81 and that the web server is running on port 8080.
 This tutorial assumes you are using my express web server which serves an index.html from views to internal port 8080. (check its attached tutorial for more)
 **make sure port 443 and 80 is open on AWS** 
-Use putty to ssh into your AWS ubuntu server EC2 container (https://www.quickvenom.org/ubuntu) 
 
 $ sudo apt-get update
 $ sudo apt-get install nginx
@@ -59,4 +58,3 @@ itll print it to the console on a sucessful creation
 $ sudo systemctl restart nginx
 
 Check online by going to the domain but https and the correct domain should be visible.
-
