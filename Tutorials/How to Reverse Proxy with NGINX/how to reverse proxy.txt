@@ -1,7 +1,7 @@
 Before starting verify that your website is accessible via the domain and that you have added a cname entry in your dns for api that points to @,
 this configures a subdomain for the api's use (see attached screenshot). Also verify that your API is running on internal port 81 and that the web server is running on port 8080.
 This tutorial assumes you are using my express web server which serves an index.html from views to internal port 8080. (check its attached tutorial for more)
-**make sure port 443 and 80 is open on AWS** 
+**make sure port 443 and 80 is open on AWS**
 
 $ sudo apt-get update
 $ sudo apt-get install nginx
@@ -41,6 +41,9 @@ $ sudo apt-get update
 $ sudo apt-get install certbot
 
 $ sudo certbot certonly --webroot -w /var/www/yourapp/views -d yourapp.com -d www.yourapp.com
+
+sudo certbot certonly --webroot -w /var/www/api/views -d api.sourcepaynow.com
+sudo certbot certonly --webroot -w /var/www/website/views -d www.sourcepaynow.com -d sourcepaynow.com
 
 change;
 

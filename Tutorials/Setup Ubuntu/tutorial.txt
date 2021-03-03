@@ -10,5 +10,6 @@ source ~/.profile
 nvm install 10.16.0
 ln -s "$(which nodejs)" /usr/local/bin/node
 npm install pm2 -g
+npm install yarn -g
 mkdir /var/www
 chmod 777 -R /var/www
